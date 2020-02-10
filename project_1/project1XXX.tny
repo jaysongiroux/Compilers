@@ -1,0 +1,40 @@
+{Author: Jason Giroux}
+{Project: 1}
+read x;
+read y;
+
+{sum}
+a := x+y;
+write a;
+
+{subtraction}
+s := x-y;
+write s;
+
+{Mult}
+m := x*y;
+write m;
+
+{division}
+d := x/y;
+write d;
+
+{sum of all numbers between x and y}
+{been tested for x=1 y=5 and x=2 y=7}
+fact := x;
+sum := x;
+
+{if the first number is larger than the second number, do not run.
+this will prevent an infitite loop.}
+if x < y then
+    repeat
+        fact := fact +  1;
+        sum := sum + fact
+    until fact = y-1
+end;
+
+sum := sum - x;
+ave := sum/2;
+
+
+write ave
