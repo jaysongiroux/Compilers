@@ -1,5 +1,15 @@
 {Author: Jason Giroux}
 {Project: 1}
+{
+    objective: 
+    print in this order:
+    sum 
+    subtraction
+    multiplication
+    division
+    sum of all the numbers between x and y and average them
+
+}
 read x;
 read y;
 
@@ -16,8 +26,13 @@ m := x*y;
 write m;
 
 {division}
-d := x/y;
-write d;
+if y=0 then
+    write 0
+
+else
+    d := x/y;
+    write d
+end;
 
 {sum of all numbers between x and y}
 {been tested for x=1 y=5 and x=2 y=7}
