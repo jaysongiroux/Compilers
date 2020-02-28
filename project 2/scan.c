@@ -77,7 +77,23 @@ static TokenType reservedLookup (char * s)
  //****************************
  //add code here
  //load your binary search algorithm here 
-  
+  int i;
+  int l = 0;
+  int r = MAXRESERVED - 1;
+
+  while (l <= r) { 
+    int m = (l + r) / 2; 
+
+    if (strcmp(s,reservedWords[m].str)==0) 
+      return reservedWords[m].tok;
+
+    else if (strcmp(s,reservedWords[m].str) < 0) 
+        l = m + 1; 
+
+    else
+        r = m - 1; 
+  } 
+  return ID;
 }
 
 /****************************************/
