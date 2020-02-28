@@ -27,7 +27,7 @@
 /*   http://www.mathcs.sjsu.edu/faculty/louden/              */
 /*************************************************************/
 
-#include "globals.h"
+#include "global.h"
 #include "util.h"
 
 /* Procedure printToken prints a token

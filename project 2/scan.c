@@ -7,7 +7,7 @@
 /*                                                           */
 /*************************************************************/
 
-#include "globals.h"
+#include "global.h"
 #include "util.h"
 #include "scan.h"
 
