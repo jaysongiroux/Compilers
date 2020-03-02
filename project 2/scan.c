@@ -127,14 +127,13 @@ TokenType getToken(void)
          }
          else if (isalpha(c))
          {
-			//Add code here
-			
+			    //Add code here
          }
          else switch (c)
          { case '<':
              state = INLESS;
              break;
-           
+             
 			  //add code here
 			  
 			  
@@ -156,17 +155,21 @@ TokenType getToken(void)
              break;
          }
          break;
+
+      //ENTERCOMMENT = 
        case ENTERCOMMENT:
          if (c == '*') state = INCOMMENT;
          else
          { state = DONE;
            /* backup in the input */
           
-			 //Add code here
-			 
-			 currentToken = OVER;
+          //Add code here
+          // syntax for comment block: "/* comment here */"
+          
+			    currentToken = OVER;
          }
          break;
+
        case INCOMMENT:
          if (c == '*') 
 			
@@ -205,7 +208,7 @@ TokenType getToken(void)
          else
          { /* backup in the input */
    			//Add code here       
-			}
+			    }
          break;
        case INNEQ:
          state = DONE;
