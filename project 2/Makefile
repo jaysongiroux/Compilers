@@ -10,8 +10,8 @@ CFLAGS =
 
 OBJS = main.o util.o scan.o
 
-tiny: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o tiny
+cminus: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o cminus
 
 main.o: main.c global.h util.h scan.h
 	$(CC) $(CFLAGS) -c main.c
@@ -35,12 +35,12 @@ cgen.o: global.h
 	$(CC) $(CFLAGS) -c cgen.c
 
 clean:
-	-rm tiny
-	-rm tm
+	-rm cminus
+	#-rm tm
 	-rm $(OBJS)
 
-tm: tm.c
-	$(CC) $(CFLAGS) tm.c -o tm
+#tm: tm.c
+	#$(CC) $(CFLAGS) tm.c -o tm
 
-all: tiny tm
+all: cminus
 

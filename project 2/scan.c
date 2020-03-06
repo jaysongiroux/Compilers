@@ -2,8 +2,13 @@
 /*************************************************************/
 /*   File: scan.c                                            */
 /*   The scanner implementation for the C-Minus compiler     */
-/*                                                           */
-/*                                                           */
+/*   The Scanner goes through the programs and collects all  */
+/*   the tokens for the parser.                              */
+/*   Lauren Ramirez & Isaac Martin                           */
+/*   lramirez895@g.rwu.edu                                   */
+/*   imartin993@g.rwu.edu                                    */
+/*   Last Edited 03/27/2019                                  */
+/*   COMSC 440.01 Compiler Design                            */
 /*                                                           */
 /*************************************************************/
 
@@ -77,22 +82,21 @@ static TokenType reservedLookup (char * s)
  //****************************
  //add code here
  //load your binary search algorithm here 
-  int i;
-  int l = 0;
-  int r = MAXRESERVED - 1;
+  int low = 0;
+  int high = 5;
 
-  while (l <= r) { 
-    int m = (l + r) / 2; 
-
-    if (strcmp(s,reservedWords[m].str)==0) 
-      return reservedWords[m].tok;
-
-    else if (strcmp(s,reservedWords[m].str) < 0) 
-        l = m + 1; 
-
-    else
-        r = m - 1; 
-  } 
+  while(high >= low) {
+    int middle = (low + high) >> 1;
+    if(strcmp(s, reservedWords[middle].str) == 0) {
+      return reservedWords[middle].tok;
+    }
+    if(strcmp(s,reservedWords[middle].str) < 0) {
+      high = middle - 1;
+    }
+    if(strcmp(s,reservedWords[middle].str) > 0) {
+      low = middle + 1;
+    }
+  }
   return ID;
 }
 
@@ -120,71 +124,119 @@ TokenType getToken(void)
          /* order of tests reorganized a bit for better
             efficiency */
          if ((c == ' ') || (c == '\t') || (c == '\n'))
-           /* skip */;
+         /*skip*/;
          else if (isdigit(c))
          { save = TRUE;
            state = INNUM;
          }
          else if (isalpha(c))
          {
-			    //Add code here
+           save = TRUE;
+           state = INID;  //Add code here
+      
          }
          else switch (c)
-         { case '<':
+         {  case '<':
              state = INLESS;
              break;
-             
-			  //add code here
-			  
-			  
-			  default:
-             state = DONE;
-             switch (c)
+            case '=':
+              state = INEQ;
+              break;
+            case '>':
+              state = INGREATER;           //add code here
+              break;
+            case '!':
+              state = INNEQ;
+              break;
+            case '/':
+              state = ENTERCOMMENT;
+              break;   
+      
+            default:
+              state = DONE;
+  
+            switch (c)
              { case EOF:
                  currentToken = ENDFILE;
                  break;
                case '+':
-                
-					//Add code here
-					 
-					default:
-                 currentToken = ERROR;
-                 save = TRUE;
+                 currentToken = PLUS;
                  break;
-             }
-             break;
-         }
+               case '-':
+                 currentToken = MINUS;
+                 break;
+               case '*':
+                 currentToken = TIMES;
+                 break;
+               case '/':
+                 currentToken = OVER;                  //Add code here
+                 break;
+               case '(':
+                 currentToken = LPAREN;
+                 break;
+               case ')':
+                 currentToken = RPAREN;
+                 break;
+               case '[':
+                 currentToken = LBRACKET;
+                 break;
+               case ']':
+                 currentToken = RBRACKET;
+                 break;
+               case '{':
+                 currentToken = LCURLY;
+                 break;
+               case '}':
+                 currentToken = RCURLY;
+                 break;
+               case ';':
+                 currentToken = SEMI;
+                 break;
+         case ',':
+          currentToken = COMMA;
+          break;
+         case '!':
+          currentToken = NE;
          break;
 
-      //ENTERCOMMENT = 
+        default:
+                 currentToken = ERROR;
+                 state = START;
+                 save = FALSE;
+                 break;
+             }break;
+         }break;
        case ENTERCOMMENT:
-         if (c == '*') state = INCOMMENT;
+         if (c == '*'){
+          save = FALSE;
+          state = INCOMMENT;
+        }
          else
          { state = DONE;
            /* backup in the input */
-          
-          //Add code here
-          // syntax for comment block: "/* comment here */"
-          
-			    currentToken = OVER;
+           ungetNextChar();  //Add code here
+           currentToken = OVER;
          }
          break;
-
        case INCOMMENT:
-         if (c == '*') 
-			
-			//Add code here
-			
+         if (c == '*')
+          state = EXITCOMMENT;   //Add code here 
          else if (c == EOF)
-         { state = DONE;
+         { state = ERROR;
            currentToken = ENDFILE;
          }
          break;
        case EXITCOMMENT:
-         if (c == '/') state = START;
-         
-			//Add code here
-			
+         if (c == '/') {
+          save = TRUE;
+          state = START;
+          }             //Add code here
+       else if(c == '*')
+          state = INCOMMENT;
+       else if (c == EOF)
+         { state = DONE;
+           currentToken = ENDFILE;
+         }    
          break;
        case INLESS:
          state = DONE;
@@ -197,24 +249,31 @@ TokenType getToken(void)
          }
          break;
        case INEQ:
-        
-		  //Add code here
-		  
-		  break;
+         state = DONE;
+         if (c == '=')
+           currentToken = EQ;    //Add code here
+         else
+         { /* backup in the input */
+           ungetNextChar();
+           currentToken = ASSIGN;
+         }    
+         break;
        case INGREATER:
          state = DONE;
          if (c == '=')
            currentToken = GE;
          else
          { /* backup in the input */
-   			//Add code here       
-			    }
+       ungetNextChar();
+           currentToken = GT;   //Add code here       
+   }
          break;
        case INNEQ:
          state = DONE;
          if (c == '=')
           // Add code here
-			else
+          currentToken = NE;
+         else
          { /* backup in the input */
            ungetNextChar();
            currentToken = ERROR;
@@ -230,11 +289,14 @@ TokenType getToken(void)
          }
          break;
        case INID:
-        
-		  //Add code here
-		  
-		 break;
-		 
+         if (!isalpha(c))
+         { /* backup in the input */      //Add code here
+           ungetNextChar();
+           save = FALSE;
+           state = DONE;
+           currentToken = ID;
+         }
+   break;  
        case DONE:
        default: /* should never happen */
          fprintf(listing,"Scanner Bug: state= %d\n",state);
@@ -256,4 +318,3 @@ TokenType getToken(void)
    }
    return currentToken;
 } /* end getToken */
-

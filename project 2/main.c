@@ -61,9 +61,9 @@ FILE * code;
 /* allocate and set tracing flags */
 int EchoSource = TRUE;
 int TraceScan = TRUE;
-int TraceParse = TRUE;
-int TraceAnalyze = TRUE;
-int TraceCode = TRUE;
+int TraceParse = FALSE;
+int TraceAnalyze = FALSE;
+int TraceCode = FALSE;
 
 /* error flag to inhibit subsequent passes */
 int Error = FALSE;
