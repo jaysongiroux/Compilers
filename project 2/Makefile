@@ -1,5 +1,5 @@
 #
-# Makefile for TINY
+# Makefile for CMINUS
 # Gnu C Version
 # K. Louden 2/3/98
 #
