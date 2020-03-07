@@ -7,7 +7,7 @@ int gcd (int u, int v)
   
   else return gcd(v,u-u/*v*v);
 
-	/* Words */
+	/* comments test */
 	/* u-u/v*v == u mod v */
 
 }

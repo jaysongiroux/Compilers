@@ -4,11 +4,12 @@
 /*   The scanner implementation for the C-Minus compiler     */
 /*   The Scanner goes through the programs and collects all  */
 /*   the tokens for the parser.                              */
-/*   Lauren Ramirez & Isaac Martin                           */
-/*   lramirez895@g.rwu.edu                                   */
-/*   imartin993@g.rwu.edu                                    */
-/*   Last Edited 03/27/2019                                  */
-/*   COMSC 440.01 Compiler Design                            */
+/*   Dhaval Patel , Jason Giroux and Jeffrey Chesanek        */
+/*   dpatel657@g.rwu.edu                                     */
+/*   jgiroux776@g.rwu.edu                                    */
+/*   jchesanek513@g.rwu.edu                                  */
+/*   Last Edited 03/06/2020                                  */
+/*   COMSC 440 Compiler Design                               */
 /*                                                           */
 /*************************************************************/
 
@@ -200,15 +201,15 @@ TokenType getToken(void)
          break;
 
         default:
+                 save = TRUE;
                  currentToken = ERROR;
                  state = START;
-                 save = FALSE;
+                 
                  break;
              }break;
          }break;
        case ENTERCOMMENT:
          if (c == '*'){
-          save = FALSE;
           state = INCOMMENT;
         }
          else
@@ -228,15 +229,16 @@ TokenType getToken(void)
          break;
        case EXITCOMMENT:
          if (c == '/') {
-          save = TRUE;
           state = START;
           }             //Add code here
-       else if(c == '*')
-          state = INCOMMENT;
        else if (c == EOF)
          { state = DONE;
            currentToken = ENDFILE;
-         }    
+         }
+         else{
+          state = INCOMMENT;
+          ungetNextChar();
+         }
          break;
        case INLESS:
          state = DONE;
@@ -276,6 +278,7 @@ TokenType getToken(void)
          else
          { /* backup in the input */
            ungetNextChar();
+         save = TRUE;
            currentToken = ERROR;
          }
          break;
