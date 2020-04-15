@@ -7,7 +7,7 @@
 
 //Please fill up the blank for functions additive_expression, term and factor.
 
-#include "globals.h"
+#include "global.h"
 #include "util.h"
 #include "scan.h"
 #include "parse.h"
@@ -464,7 +464,6 @@ TreePtr factor(void)
 TreePtr arg_list(void)
 { TreePtr t,p;
    //Add code here
-  }
   return t;
 } /* arg_list */
 
