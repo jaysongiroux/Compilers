@@ -1,12 +1,3 @@
-
-/*************************************************************/
-/*   File: scan.c                                            */
-/*   The scanner implementation for the C-Minus compiler     */
-/*                                                           */
-/*   ohn Deschenes Nick Hart                                 */
-/*   COMSC 450.01                                            */
-/*************************************************************/
-
 #include "globals.h"
 #include "util.h"
 #include "scan.h"
