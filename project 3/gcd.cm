@@ -5,7 +5,7 @@ Algorithm to compute god. */
 int gcd (int u, int v)
 { if (v == 0) return u ;
   
-  else return gcd(v,u-u/*v*v);
+  else return gcd(v,u-u/v*v);
 
 	/* comments test */
 	/* u-u/v*v == u mod v */

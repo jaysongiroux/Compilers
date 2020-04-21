@@ -8,7 +8,7 @@ CC = gcc
 
 CFLAGS = 
 
-OBJS = main.o util.o scan.o
+OBJS = main.o util.o scan.o parse.o
 
 cminus: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o cminus
@@ -25,22 +25,8 @@ scan.o: scan.c scan.h util.h global.h
 parse.o: scan.h global.h util.h
 	$(CC) $(CFLAGS) -c parse.c
 
-analyze.o: global.h
-	$(CC) $(CFLAGS) -c analyze.c
-
-code.o: global.h
-	$(CC) $(CFLAGS) -c code.c
-
-cgen.o: global.h
-	$(CC) $(CFLAGS) -c cgen.c
-
 clean:
 	-rm cminus
-	#-rm tm
 	-rm $(OBJS)
 
-#tm: tm.c
-	#$(CC) $(CFLAGS) tm.c -o tm
-
 all: cminus
-

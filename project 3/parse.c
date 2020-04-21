@@ -399,17 +399,35 @@ TreePtr simple_expression(void)
 
 TreePtr additive_expression(void)
 { TreePtr t,p,q;
- 
- 	//*************Add code here
- 
+  t = term();
+  if ((token == PLUS) || (token == MINUS))
+  {  p = newExpNode(OpK);
+     p->attr.op = token;
+     match(token);
+     q = additive_expression();
+     if (p != NULL)
+     { p->child[0] = t;
+       p->child[1] = q;
+       t = p;
+     }
+  }         //*************Add code here 
    return t;
 } /* additive_expression */
 
 TreePtr term(void)
 { TreePtr t,p,q;
- 
- 	//*************Add code here
- 
+  t = factor();
+  if ((token == TIMES || token == OVER))
+  {  p = newExpNode(OpK);
+     p->attr.op = token;
+     match(token);
+     q = term();
+     if (p != NULL)
+     { p->child[0] = t;
+       p->child[1] = q;
+       t = p;
+     }
+  }         //*************Add code here
   return t;
 } /* term */
 
@@ -417,11 +435,14 @@ TreePtr factor(void)
 { TreePtr t = NULL,p;
   char* savedName;
   switch (token)
-  { case LPAREN:
+  { case LPAREN:           
      
-	 	//******* Add code here
-		 
-	 case ID:
+     match(LPAREN);
+     t = expression();
+     match(RPAREN);
+     break;
+     
+      case ID:
       savedName = copyString(tokenString);
       match(ID);
       if (token == LPAREN)
@@ -448,10 +469,11 @@ TreePtr factor(void)
       }
       break;
     case NUM :
-     
-	  	//************** Add code here
-		
-	   break;
+      t = newExpNode(ConstK);
+        if ((t!=NULL) && (token==NUM))
+          t->attr.val = atoi(tokenString);     //************** Add code here 
+        match(NUM);
+     break;
     default:
       syntaxError("unexpected token -> ");
       printToken(token,tokenString);
@@ -463,7 +485,18 @@ TreePtr factor(void)
 
 TreePtr arg_list(void)
 { TreePtr t,p;
-   //Add code here
+  p = t = expression();
+  while (token == COMMA)
+  { match(COMMA);
+    if (p != NULL)
+    { p->sibling = expression();
+      if (p->sibling != NULL) p = p->sibling;
+    }
+    else
+    { p = expression();
+      if (t == NULL) t = p;
+    }
+  }
   return t;
 } /* arg_list */
 
@@ -479,4 +512,3 @@ TreePtr parse(void)
   }
   return syntaxTree;
 }
-
