@@ -1,4 +1,4 @@
-# Project 2
+# Project 3
 to see objectives please see the [PDF](https://github.com/jaysongiroux/Compilers/blob/master/project%202/project2Handout.pdf)
 
 ### set up
