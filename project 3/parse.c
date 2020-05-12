@@ -410,7 +410,7 @@ TreePtr additive_expression(void)
        p->child[1] = q;
        t = p;
      }
-  }         //*************Add code here 
+  }        
    return t;
 } /* additive_expression */
 
@@ -427,7 +427,7 @@ TreePtr term(void)
        p->child[1] = q;
        t = p;
      }
-  }         //*************Add code here
+  }
   return t;
 } /* term */
 
@@ -468,12 +468,18 @@ TreePtr factor(void)
         if (t != NULL) t->attr.name = savedName;
       }
       break;
-    case NUM :
+
+    case NUM:
+      // Handle NUM
       t = newExpNode(ConstK);
-        if ((t!=NULL) && (token==NUM))
-          t->attr.val = atoi(tokenString);     //************** Add code here 
-        match(NUM);
+      
+      if ((t!=NULL) && (token==NUM)) {
+        t->attr.val = atoi(tokenString);
+      }
+
+      match(NUM);
      break;
+
     default:
       syntaxError("unexpected token -> ");
       printToken(token,tokenString);
