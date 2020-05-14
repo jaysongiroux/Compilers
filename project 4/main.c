@@ -112,7 +112,7 @@ main( int argc, char * argv[] )
   }
 #endif
 #endif
-#endif*/
+#endif
   fclose(source);
   return 0;
 }
