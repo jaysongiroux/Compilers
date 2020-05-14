@@ -1,7 +1,6 @@
 #
 # Makefile for CMINUS
 # Gnu C Version
-# Lauren Ramirez & Isaac Martin 2/3/98
 #
 # /*   Version: 4                                              */
 # /*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
