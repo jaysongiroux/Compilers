@@ -20,10 +20,11 @@
 /*   File: symtab.c                                          */
 /*   Symbol table implementation for the C-Minus compiler    */
 /*   (allows only one symbol table)                          */
-/*   Version 4 8/1/99                                        */
-/*   Authors: Lauren Ramirez & Isaac Martin	             */
-/*   lramirez895@g.rwu.edu imartin993@g.rwu.edu		     */
-/*   Roger Williams University		                     */
+/*   Version: 4                                              */
+/*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
+/*   jgiroux776@g.rwu.edu,jchesanek513@g.rwu.edu,            */
+/*   dpatel657@g.rwu.edu                                     */
+/*   Roger Williams University		                           */
 /*   COMSC 440 Language Translation and Compiler Design      */
 /*************************************************************/
 

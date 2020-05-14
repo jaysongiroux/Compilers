@@ -19,11 +19,12 @@
 /*************************************************************/
 /*   File: scan.h                                            */
 /*   The scanner interface for the C-Minus compiler          */
-/*   Version 4 8/1/99                                        */
-/*   K. Louden, Dept. of Math & Computer Science             */
-/*   San Jose State University, San Jose, CA 95192-0103      */
-/*   (408) 924-5134   louden@cs.sjsu.edu                     */
-/*   http://www.mathcs.sjsu.edu/faculty/louden/              */
+/*   Version: 4                                              */
+/*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
+/*   jgiroux776@g.rwu.edu,jchesanek513@g.rwu.edu,            */
+/*   dpatel657@g.rwu.edu                                     */
+/*   Roger Williams University		                         */
+/*   COMSC 440 Language Translation and Compiler Design      */
 /*************************************************************/
 
 #ifndef _SCAN_H_

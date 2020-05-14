@@ -19,12 +19,12 @@
 /*************************************************************/
 /*   File: main.c                                            */
 /*   Main program for C-minus compiler                       */
-/*   Lauren Ramirez & Isaac Martin                           */
-/*   lramirez895@g.rwu.edu                                   */
-/*   imartin993@g.rwu.edu                                    */
-/*   Last Edited 03/27/2019                                  */
-/*   COMSC 440.01 Compiler Design                            */
-/*                                                           */
+/*   Version: 4                                              */
+/*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
+/*   jgiroux776@g.rwu.edu,jchesanek513@g.rwu.edu,            */
+/*   dpatel657@g.rwu.edu                                     */
+/*   Roger Williams University		                           */
+/*   COMSC 440 Language Translation and Compiler Design      */
 /*************************************************************/
 
 #include "global.h"
