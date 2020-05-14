@@ -1,11 +1,13 @@
-/*************************************************************/
-/*************************************************************/
 /*   File: parse.c                                           */
 /*   The parser implementation for the C-Minus compiler      */
-/*************************************************************/
+/*   Version: 4                                              */
+/*   Date: 5/14/20  						                             */  
+/*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
+/*   jgiroux776@g.rwu.edu,jchesanek513@g.rwu.edu,            */
+/*   dpatel657@g.rwu.edu                                     */
+/*   Roger Williams University		                           */
+/*   COMSC 440 Language Translation and Compiler Design      */
 
-
-//Please fill up the blank for functions additive_expression, term and factor.
 
 #include "global.h"
 #include "util.h"

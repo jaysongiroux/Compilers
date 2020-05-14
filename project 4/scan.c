@@ -4,6 +4,7 @@
 /*   The scanner implementation for the C-Minus compiler     */
 /*   The Scanner goes through the programs and collects all  */
 /*   the tokens for the parser.                              */
+/*   Date: 5/14/20                                           */
 /*   Dhaval Patel , Jason Giroux and Jeffrey Chesanek        */
 /*   dpatel657@g.rwu.edu                                     */
 /*   jgiroux776@g.rwu.edu                                    */

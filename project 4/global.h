@@ -27,6 +27,7 @@
 /*   http://www.mathcs.sjsu.edu/faculty/louden/              */
 /*************************************************************/
 /*   Version: 4                                              */
+/*   Date: 5/14/20  						                             */  
 /*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
 /*   jgiroux776@g.rwu.edu,jchesanek513@g.rwu.edu,            */
 /*   dpatel657@g.rwu.edu                                     */

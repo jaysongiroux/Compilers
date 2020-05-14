@@ -1,5 +1,5 @@
 /* A program to perform euclld's
-Algorithm to compute god. */
+Algorithm to compute gcd. */
 
 
 int gcd (int u, int v)

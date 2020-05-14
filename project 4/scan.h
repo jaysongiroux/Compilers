@@ -19,6 +19,7 @@
 /*************************************************************/
 /*   File: scan.h                                            */
 /*   The scanner interface for the C-Minus compiler          */
+/*   Date: 5/14/20                                           */
 /*   Version: 4                                              */
 /*   Authors: Jason Giroux, Jeffrey Chesanek, Dhaval Patel   */
 /*   jgiroux776@g.rwu.edu,jchesanek513@g.rwu.edu,            */
