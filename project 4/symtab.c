@@ -45,8 +45,7 @@ static int hash ( char * key )
   while (key[i] != '\0')
   { temp = ((temp << SHIFT) + key[i]) % SIZE;
     ++i;
-  }			//add code here to complete the implementation of the hash function
-
+  }
   return temp;
 }
 
@@ -90,32 +89,37 @@ int st_enterScope(void)
 void st_exitScope(void)
 {
   symTab = symTab->next;
-			//Add code to handle the case when a scope needs to be deleted
 }
 
 /* Procedure st_insert inserts def nodes from
  * from the syntax tree into the symbol table
  * returns 0 if memory allocation fails, else 1
  */
-int st_insert( TreePtr t)
-{
-	int h = hash(t->attr.name);	//step 1: calculate the hash value for t
-	if (!symTab) {
-		st_enterScope();	//step 2: when the table is empty, create a new scope
-		return 0;		//step 3: If the obtained symbol table is empty, return 0
-	}
-	//step 4: allocate memory for a new BucketListRec and cast the return
-	//type to BucketList and assigned it a variable l, which should
-	//be declared as BucketList
-	BucketList l = (BucketList) malloc(sizeof(struct BucketListRec));
-	if(!l) {	//step 5: check on memeory allocation error
-		return 0;
-	}
-	
-	l->defnode = t;		//step 6: set up the attribute(defnode) of l as t, the accepted TreePtr
-	l->next = symTab->t[h];	//step 7: insert the new BucketList l to the specific hash table cell
-	symTab->t[h] = l;	//step 8: return the new BucketList l 
-	return 1;
+int st_insert(TreePtr t)
+{ 
+    int h_val = hash(t->attr.name); //step 1: calculate the hash value for t
+
+    if(!symTab) {
+      st_enterScope(); //step 2: when the table is empty, create a new scope
+    }
+
+    if(!symTab) {
+      return 0;   //step 3: If the obtained symbol table is empty, return 0    
+    }
+
+    BucketList l = (BucketList) malloc(sizeof(struct BucketListRec)); //step 4: allocate memory for a new BucketListRec and cast the return
+    //             type to BucketList and assigned it a variable l, which should
+    //             be declared as BucketList
+    
+    if (!l) {
+      return 0; /* memory allocation error *///step 5: check on memeory allocation error
+    }
+
+    l->defnode = t;//step 6: set up the attribute(defnode) of l as t, the accepted TreePtr
+    l->next = symTab->t[h_val];//step 7: insert the new BucketList l to the specific hash table cell
+    symTab->t[h_val] = l;
+    
+    return 1; //step 8: return the new BucketList l 
 } /* st_insert */
 
 /* Function st_lookup returns the defnode
